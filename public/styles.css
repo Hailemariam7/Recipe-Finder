@@ -2,6 +2,7 @@
   box-sizing: border-box;
   list-style: none;
 }
+
 label,
 input,
 textarea {
@@ -60,6 +61,7 @@ nav {
 .tab {
   max-width: max-content;
 }
+
 .tab pre {
   display: none;
 }
@@ -68,14 +70,10 @@ nav {
   cursor: pointer;
   padding: 1px;
   scale: 1.2;
-  background-color: rgb(92, 184, 110, 0.8);
+  background-color: rgba(92, 184, 110, 0.8);
 }
 
 .nav-popup {
-  /*  position: absolute;
-  top: 200px;
-  left: 50%;
-  transform: translate(-50%, -50%); */
   width: 400px;
   height: 100%;
   display: flex;
@@ -88,10 +86,22 @@ nav {
 
 dialog {
   max-width: 320px;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  border: 1px solid #ccc;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+dialog::backdrop {
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .open-dialog:hover {
-  background-color: rgb(0, 128, 0, 0.5);
+  background-color: rgba(0, 128, 0, 0.5);
   cursor: pointer;
 }
 
@@ -110,6 +120,7 @@ dialog {
   align-items: center;
   justify-content: center;
 }
+
 form {
   display: flex;
   flex-direction: column;
@@ -120,8 +131,15 @@ form {
 textarea,
 input {
   width: 320px;
-
   padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+textarea:hover,
+input:hover {
+  border-color: #62a1eb;
 }
 
 #search {
@@ -151,6 +169,11 @@ input {
   max-width: 250px;
   cursor: pointer;
   border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+
+.display-recipes figure:hover img {
+  transform: scale(1.05);
 }
 
 .detail-popup {
@@ -165,7 +188,18 @@ input {
   z-index: 1000;
   width: 100%;
   min-height: 12000px;
-  background-color: rgb(92, 184, 110, 0.8);
+  background-color: rgba(92, 184, 110, 0.8);
+  opacity: 0;
+  animation: fadeIn 0.3s forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .popup-content {
@@ -173,15 +207,14 @@ input {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  right: 0;
-  bottom: 0;
   z-index: 1001;
   min-width: 320px;
   max-width: 600px;
   height: 100%;
   display: flex;
   flex-direction: column;
-  background-color: rgb(92, 184, 110, 0.9);
+  background-color: rgba(92, 184, 110, 0.9);
+  color: white;
 }
 
 .recipe-name h2 {
@@ -190,7 +223,6 @@ input {
 
 .recipe-name img {
   max-width: 300px;
-  max-height: auto;
   border-radius: 10px;
 }
 
@@ -210,6 +242,7 @@ input {
   text-align: justify;
   margin-left: 10px;
 }
+
 #close-button {
   width: 40px;
   height: 40px;
@@ -220,6 +253,7 @@ input {
   z-index: 2000;
   cursor: pointer;
 }
+
 .go-up {
   position: fixed;
   bottom: 5px;
@@ -228,6 +262,16 @@ input {
   height: 40px;
   border-radius: 10px;
 }
+
+.go-up:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
 @media only screen and (max-width: 700px) {
   #hamburger_menu {
     display: block;
@@ -238,6 +282,10 @@ input {
   .display-recipes {
     margin: 20px 0;
     gap: 10px;
+    width: 100%;
+  }
+  textarea,
+  input {
     width: 100%;
   }
 }

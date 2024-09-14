@@ -28,7 +28,9 @@ export async function fetchRecipes(formData) {
   try {
     const response = await fetch(url, options);
     const result = await response.json();
-
+    document.querySelectorAll(".display-recipes").forEach((element) => {
+      element.remove();
+    });
     localStorage.setItem("recipes", JSON.stringify(result));
     renderRecipes(result);
   } catch (error) {

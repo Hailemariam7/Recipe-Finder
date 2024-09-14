@@ -36,9 +36,13 @@ export function createForm() {
   form.addEventListener("submit", (event) => {
     localStorage.removeItem("recipes");
     localStorage.clear();
+    //document.querySelector(".display-recipes").innerHTML = "";
     event.preventDefault();
-    fetchRecipes(new FormData(form));
-    queryInput.querySelector('input[name="query"]').value = "";
+    setTimeout(() => {
+      fetchRecipes(new FormData(form));
+      queryInput.querySelector('input[name="query"]').value = "";
+    }, 200);
+
     //location.reload();
   });
   formContainer.appendChild(form);
